@@ -9,7 +9,10 @@ custom:
   profiles:
     experiments: teamid-experiment # To be removed . For experiments only
     development: teamid-dev # change to Development AWS Profile
+    testing: teamid-test # change to Testing AWS Profile
     production: teamid-prod # change to Production AWS Profile
+  envFile: ${file(./env-${self:custom.profiles.${self:provider.stage}}.yml)}
+  env: 
 functions:
   app:
     handler: index.handler
