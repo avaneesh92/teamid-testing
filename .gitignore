@@ -1,0 +1,6 @@
+#Serverless folder
+.Serverless
+#Node modules //Need not to be tracked
+node_modules
+#Package lock by npm
+package-lock.json

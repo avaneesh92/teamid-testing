@@ -1,0 +1,17 @@
+service: teamid-testing
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${self:custom.profiles.${self:provider.stage}}
+custom: 
+  defaultStage: development
+  profiles:
+    development: testing
+    testing: testing # change to Testing AWS Profile
+    production: testing # change to Production AWS Profile
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
