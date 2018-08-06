@@ -2,8 +2,10 @@ service: teamid-testing
 provider:
   name: aws
   runtime: nodejs8.10
+  versionFunctions: false #Turn off function versioning
   stage: ${opt:stage, self:custom.defaultStage}
   profile: ${self:custom.profiles.${self:provider.stage}}
+  environment: ${file(./env-${self:provider.stage}.yml):ENV} #Get environment variables from stage env var file
 custom: 
   defaultStage: experiments
   profiles:
@@ -11,10 +13,13 @@ custom:
     development: teamid-dev # change to Development AWS Profile
     testing: teamid-test # change to Testing AWS Profile
     production: teamid-prod # change to Production AWS Profile
-  envFile: ${file(./env-${self:custom.profiles.${self:provider.stage}}.yml)}
-  env: 
+### Functions start from here 
 functions:
   app:
     handler: index.handler
+    name: test-${self:provider.stage} # Set name with reference to stage
+    description: Test function from serverless
+    tags:    # Add tag for the stage to group in AWS
+      environment: ${self:provider.stage}
     events:
       - http: ANY /

@@ -5,5 +5,11 @@ Setup three AWS profiles in you local
         teamid-dev # change to Development AWS Profile
         teamid-test # change to Testing AWS Profile
         teamid-prod # change to Production AWS Profile
-Environment variables are set using "env-PROFILE_NAME.yml" file
-For example for "teamid-dev" profile "env-teamid-dev.yml" file will be loaded
+
+Environment variables are set using "env-STAGE.yml" file
+For example for development stage "env-development.yml" file will be loaded
+File containing environment variables will have all env vars under top level ENV object
+        ENV:
+            NAME: Avaneesh
+            ROLE: Developer
+            ANOTHER_ENV_VAR: Hello World!
