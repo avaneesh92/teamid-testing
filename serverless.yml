@@ -13,13 +13,50 @@ custom:
     development: teamid-dev # change to Development AWS Profile
     testing: teamid-test # change to Testing AWS Profile
     production: teamid-prod # change to Production AWS Profile
+  documentation:
+    api:
+      info:
+        version: 0.1
+        title: "This is a test API"
+        description: "This is a description of test api"
+        termOfService: "Nothing just use it"
+        contact:
+          name: Avaneesh Tripathi
+          url: https://www.teamid.com
+          email: some-dev@teamid.com
+        license:
+          name: The license
+          url: https://www.teamid.com
 ### Functions start from here 
 functions:
-  app:
-    handler: index.handler
+  save:
+    handler: src/index.handler
     name: test-${self:provider.stage} # Set name with reference to stage
     description: Test function from serverless
     tags:    # Add tag for the stage to group in AWS
       environment: ${self:provider.stage}
     events:
-      - http: ANY /
+      - http:
+          path: app/save
+          method: post
+          cors: true
+          documentation:
+            summary: "create a new test entry"
+resources:
+  Resources:
+    testTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: test-${self:provider.stage}
+        AttributeDefinitions:
+        - AttributeName: testId
+          AttributeType: S
+        KeySchema:
+          - AttributeName: testId
+            KeyType: HASH
+        ProvisionedThroughput:
+            ReadCapacityUnits: 2
+            WriteCapacityUnits: 2
+plugins:
+  - serverless-aws-documentation
+

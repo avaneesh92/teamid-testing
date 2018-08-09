@@ -9,7 +9,12 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
+  "devDependencies": {
+    "aws-sdk": "^2.286.2",
+    "serverless-aws-documentation": "^1.1.0"
+  },
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "serverless-http": "^1.6.0"
   }
