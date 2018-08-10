@@ -22,6 +22,8 @@ Secrets have to be referenced in env-STAGE.yml file from this secrets-STAGE.yml 
 ## Documentation ##
 Documentation is provided by serverless-aws-documentaion plugin which generates API doc using serveless.yml file.
 To download the documentation
-                        serverless deploy
-                        serverless downloadDocumentation --outputFileName=./docs/swagger.json
+
+        serverless deploy
+        serverless downloadDocumentation --outputFileName=./docs/swagger.json
+        
 This will download swagger definitions file, which we can explore and edit using swagger
