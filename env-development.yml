@@ -1,3 +1,4 @@
 ENV:
   NAME: Avaneesh
   ROLE: Developer
+  TEST_TABLE: test-${self:provider.stage}

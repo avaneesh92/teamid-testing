@@ -4,3 +4,5 @@
 node_modules
 #Package lock by npm
 package-lock.json
+# Exclude secrets file
+secrets-*.yml

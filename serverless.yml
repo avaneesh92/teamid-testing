@@ -2,10 +2,21 @@ service: teamid-testing
 provider:
   name: aws
   runtime: nodejs8.10
+  region: us-east-1
   versionFunctions: false #Turn off function versioning
   stage: ${opt:stage, self:custom.defaultStage}
   profile: ${self:custom.profiles.${self:provider.stage}}
   environment: ${file(./env-${self:provider.stage}.yml):ENV} #Get environment variables from stage env var file
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TEST_TABLE}"
 custom: 
   defaultStage: experiments
   profiles:
@@ -47,7 +58,7 @@ resources:
     testTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: test-${self:provider.stage}
+        TableName: ${self:provider.environment.TEST_TABLE}
         AttributeDefinitions:
         - AttributeName: testId
           AttributeType: S
