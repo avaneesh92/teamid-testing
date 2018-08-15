@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "This is a description of test api",
-    "version" : "2018-08-15T18:05:25Z",
+    "version" : "2018-08-15T19:15:49Z",
     "title" : "development-teamid-testing",
     "contact" : {
       "name" : "Avaneesh Tripathi",
@@ -18,10 +18,13 @@
   "basePath" : "/development",
   "schemes" : [ "https" ],
   "paths" : {
-    "/app/save" : {
+    "/save" : {
       "post" : {
         "summary" : "create a new test entry",
-        "responses" : { }
+        "responses" : { },
+        "security" : [ {
+          "authorize" : [ ]
+        } ]
       },
       "options" : {
         "consumes" : [ "application/json" ],
@@ -46,6 +49,14 @@
           }
         }
       }
+    }
+  },
+  "securityDefinitions" : {
+    "authorize" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header",
+      "x-amazon-apigateway-authtype" : "custom"
     }
   }
 }

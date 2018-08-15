@@ -18,6 +18,7 @@ provider:
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TEST_TABLE}"
 custom: 
+  app: teamid
   defaultStage: development
   profiles:
     experiments: teamid-experiment # To be removed . For experiments only
@@ -40,17 +41,23 @@ custom:
           url: https://www.teamid.com
 ### Functions start from here 
 functions:
+  # Auth function #
+  authorize:
+    handler: src/auth.authorize
+    name: ${self:custom.app}-authorize-${self:provider.stage} # Set name with reference to stage
+  # Save data function #
   save:
     handler: src/index.handler
-    name: test-${self:provider.stage} # Set name with reference to stage
+    name: ${self:custom.app}-test-${self:provider.stage} # Set name with reference to stage
     description: Test function from serverless
     tags:    # Add tag for the stage to group in AWS
       environment: ${self:provider.stage}
     events:
       - http:
-          path: app/save
+          path: /save
           method: post
           cors: true
+          authorizer: authorize  
           documentation:
             summary: "create a new test entry"
 resources:

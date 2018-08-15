@@ -1,5 +1,5 @@
 ENV:
   NAME: Avaneesh Tripathi
   ROLE: Experimenter-${self:provider.stage} 
-  TEST_TABLE: test-${self:provider.stage}
+  TEST_TABLE: ${self:custom.app}-test-${self:provider.stage}
   JWT_SECRET: ${file(./secrets-${self:provider.stage}.yml):JWT_SECRET}
