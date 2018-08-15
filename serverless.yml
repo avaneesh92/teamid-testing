@@ -18,7 +18,7 @@ provider:
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TEST_TABLE}"
 custom: 
-  defaultStage: experiments
+  defaultStage: development
   profiles:
     experiments: teamid-experiment # To be removed . For experiments only
     development: teamid-dev # change to Development AWS Profile

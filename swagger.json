@@ -1,0 +1,51 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is a description of test api",
+    "version" : "2018-08-15T18:05:25Z",
+    "title" : "development-teamid-testing",
+    "contact" : {
+      "name" : "Avaneesh Tripathi",
+      "url" : "https://www.teamid.com",
+      "email" : "some-dev@teamid.com"
+    },
+    "license" : {
+      "name" : "The license",
+      "url" : "https://www.teamid.com"
+    }
+  },
+  "host" : "1wsiw0s6r9.execute-api.us-east-1.amazonaws.com",
+  "basePath" : "/development",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/app/save" : {
+      "post" : {
+        "summary" : "create a new test entry",
+        "responses" : { }
+      },
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Credentials" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

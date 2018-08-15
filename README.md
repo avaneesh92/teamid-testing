@@ -1,7 +1,8 @@
-# Testing deployment setup for serverless #
+# Serverless with Nodejs + Express + AWS Lambda + DynamoDB + Environment Variables # 
+This is a starter repo for using serverless with AWS Lambda with certain structure. You can clone it and start you developemnt
+## Testing deployment setup for serverless ##
 Setup three AWS profiles in you local
 
-        teamid-experiment # To be removed . For experiments only
         teamid-dev # change to Development AWS Profile
         teamid-test # change to Testing AWS Profile
         teamid-prod # change to Production AWS Profile
