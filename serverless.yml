@@ -47,7 +47,7 @@ functions:
     name: ${self:custom.app}-authorize-${self:provider.stage} # Set name with reference to stage
   # Save data function #
   save:
-    handler: src/index.handler
+    handler: src/index.save
     name: ${self:custom.app}-test-${self:provider.stage} # Set name with reference to stage
     description: Test function from serverless
     tags:    # Add tag for the stage to group in AWS
@@ -56,7 +56,9 @@ functions:
       - http:
           path: /save
           method: post
-          cors: true
+          cors: 
+            origins:
+              - '*'
           authorizer: authorize  
           documentation:
             summary: "create a new test entry"

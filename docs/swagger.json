@@ -2,8 +2,8 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "This is a description of test api",
-    "version" : "2018-08-10T03:02:40Z",
-    "title" : "experiments-teamid-testing",
+    "version" : "2018-08-17T17:02:50Z",
+    "title" : "development-teamid-testing",
     "contact" : {
       "name" : "Avaneesh Tripathi",
       "url" : "https://www.teamid.com",
@@ -14,14 +14,17 @@
       "url" : "https://www.teamid.com"
     }
   },
-  "host" : "j6cnj0kjgj.execute-api.us-east-1.amazonaws.com",
-  "basePath" : "/experiments",
+  "host" : "1wsiw0s6r9.execute-api.us-east-1.amazonaws.com",
+  "basePath" : "/development",
   "schemes" : [ "https" ],
   "paths" : {
-    "/app/save" : {
+    "/save" : {
       "post" : {
         "summary" : "create a new test entry",
-        "responses" : { }
+        "responses" : { },
+        "security" : [ {
+          "authorize" : [ ]
+        } ]
       },
       "options" : {
         "consumes" : [ "application/json" ],
@@ -46,6 +49,14 @@
           }
         }
       }
+    }
+  },
+  "securityDefinitions" : {
+    "authorize" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header",
+      "x-amazon-apigateway-authtype" : "custom"
     }
   }
 }
