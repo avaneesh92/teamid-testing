@@ -68,7 +68,8 @@ const authorize = async function (event,context) {
             throw {"error":""}
         }
         console.log(accessToken)
-        return await _generatePolicy(accessToken.id, 'Allow',resPath)
+        var policy = await _generatePolicy(accessToken.id, 'Allow',resPath)
+        return policy
 
     }
     catch(err){
